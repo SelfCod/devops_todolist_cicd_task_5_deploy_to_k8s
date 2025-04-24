@@ -124,7 +124,7 @@ jobs:
           path: ./*.tgz
 
   deploy-helm-development:
-    name: Deploy Helm
+    name: Deploy helm to Development
     uses: ./.github/workflows/deployment.yml
     needs: [helm-ci, docker-ci]
     secrets: inherit
@@ -133,7 +133,7 @@ jobs:
       version: ${{ github.sha }}
 
   deploy-helm-staging:
-    name: Deploy Helm
+    name: Deploy helm to Staging
     uses: ./.github/workflows/deployment.yml
     needs: [deploy-helm-development]
     secrets: inherit
@@ -142,4 +142,3 @@ jobs:
       version: ${{ github.sha }}
       helm-values-path: ./todoapp/values/stg.yaml
       helm-release-name: todoapp-staging
-      node-port: 30008
